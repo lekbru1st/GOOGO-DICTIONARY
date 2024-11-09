@@ -1,0 +1,18 @@
+    <script>
+        function showTime(){
+            document.getElementById('id').innerHTML = new Date();
+        }
+        showTime();
+        setInterval (function(){
+            showTime();
+        }, 1000);
+
+
+
+        // loader
+        let loader = document.getElementById('loader');
+
+window.addEventListener('load', function(){
+  loader.style.display = 'none';
+})
+    </script>

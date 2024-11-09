@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="contact.css">
+    <script src="https://kit.fontawesome.com/89913ed6ee.js" crossorigin="anonymous"></script>
+</head>
+<body>
+     <!-- nav bar -->
+     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="#" >
+          <img src="a493fec6-0c54-48ef-8140-9a3381b665e5.jpg" alt="Googo" width="50" height="50" class="d-inline-block align-text-top" style="border-radius: 50%;">
+          GOOGO DICTIONARY
+        </a>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #0ef;">GOOGO DICTIONARY</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="background-color: white;"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link " href="index.html">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="dictionary.html">DICTIONARY</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="quiz.html">QUIZ GAME</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="contact.html">CONTACT</a>
+              </li>
+            </ul>
+            <div id="icons">
+              <a href="https://web.facebook.com/profile.php?id=61560543073400" target="_blank">
+                <i class="fa-brands fa-facebook-f  fa-xl" style="color: #ffffff;" class="facebook"></i>
+              </a>
+              <a href="https://t.me/googo_tech_school" target="_blank">
+                <i class="fa-brands fa-telegram  fa-xl" style="color: #fafafa; padding-left: 10px;"></i>
+              </a> 
+                <a href="https://x.com/AbiyAhmedAli" target="_blank">
+                  <i class="fa-brands fa-x-twitter fa-xl" style="color: #ffffff;padding-left: 10px;"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+        
+        
+        <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav><br><br><br><br><br>
+
+
+
+
+
+    <!-- contact form -->
+
+
+    <main class="contact">
+        <h2 style="text-align: center; color: #fff; margin-top: 100px; margin-bottom: 40px;" >CONTACT US!</h2>
+
+        <form method="POST" id="form">
+            <input type="hidden" name="access_key" value="2aa3f294-6a2d-4444-ad52-c1cf28185a74">
+            <div class="input-box">
+                <div class="row">
+                      <div class="mb-3 col-6">
+                        <label for="nameinput" class="form-label">name</label>
+                        <input type="text" class="form-control" id="nameinput" placeholder="JOHN DOE" name="nameinput" required>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" required>
+                      </div>
+                </div>      
+                      <div class="mb-3">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" placeholder="your message goes here" required></textarea>
+                      </div>
+            </div>
+            <input type="submit" id="submitBtn">
+        </form><br><br>
+          <div id="result"></div>
+        
+      </main>
+
+   
+
+
+    <!-- bootstrap link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
+      <!-- form submmition js code -->
+<script>
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
+    const formData = new FormData(form);
+    e.preventDefault();
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    result.innerHTML = "Please wait..."
+    result.style.border = '1px solid #0ef';
+    result.style.color = 'white';
+    result.style.textAlign = 'center'
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status === 200) {
+                result.innerHTML = json.message;
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+});
+
+
+</script>
+</body>
+</html>

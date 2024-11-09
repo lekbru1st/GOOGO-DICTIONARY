@@ -1,0 +1,113 @@
+
+/* navbar style */
+
+a{
+    text-decoration: none;
+}
+.navbar{
+    background-color: transparent;
+    margin: 10px;
+    border-radius: 50px;
+    padding: 0.5rem;
+    box-shadow: 1px 1px 5px rgb(28, 248, 200);
+}
+.navbar-brand {
+    font-weight: 500;
+    color: #fff;
+    font-size: 24px;
+    transition: 0.3s color;
+}
+
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+.navbar-toggler:focus, .btn-close:focus{
+    box-shadow: none;
+    outline: none;
+}
+.nav-link{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: larger;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link:active{
+    color: #0ef;
+}
+@media(min-width: 991px){
+    .nav-link::after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        background-color: #0ef;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 2px;
+        color: #000;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover::after, .nav-link:active::after{
+        width: 100%;
+        visibility: visible;
+    }
+}
+.offcanvas{
+    background-color: black;
+}
+
+/* section style */
+.section{
+    background-image: linear-gradient(to right, #1b1a1a, rgb(28, 57, 68),#1b1a1a);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+#icons{
+    padding-right: 30px;
+}
+#h1{
+    text-align: center;
+}
+#loader{
+    background: #000 url(b6e0b072897469.5bf6e79950d23.gif) no-repeat center center;
+    background-size: 40%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+}
+iframe{
+    display: none;
+}
+#cont{
+    margin-top: 50px;
+    height: 380px;
+    box-shadow: 0 0 10px #009970;
+    transition: 1s linear;
+    border-radius: 26px;
+}
+#cont:hover{
+transform: translateY(-1%);
+}
+.btn{
+    padding: 12px 32px;
+    background: linear-gradient(270deg, #0ef,rgb(29, 212, 212));
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #0ef;
+    font-size: 16px;
+    color: black;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 40px;
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
